@@ -45,20 +45,6 @@
 [教程](https://tcn6g7hyxvir.feishu.cn/wiki/WYT4wZtrjijeswkI0RSc4ofTnah)
 
 
-## 前台截图
-
-![image](github/p3.png)
-
-![image](github/p2.png)
-
-![image](github/p1.png)
-
-## 后台管理截图
-
-![image](github/1.png)
-
-![image](github/2.png)
-
 
 # 免费交流社群
 
