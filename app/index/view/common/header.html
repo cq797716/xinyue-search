@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {notempty name="config.app_icon"}
+    <link rel="icon" href="{$config.app_icon}" />
+    {/notempty}
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0">
+    <title>{$seo_title}</title>
+    <meta name="keywords" content="{$seo_keywords}" />
+    <meta name="description" content="{$seo_description}" />
+    <link rel="stylesheet" href="/static/index/css/index.min.css">
+    <link rel="stylesheet" href="/static/index/css/app.css">
+    <link rel="stylesheet" href="/static/index/css/m.css">
+    
+    {$config.seo_statistics|raw}
+    
+    <style>
+        :root {
+            --theme-color: {$config.home_color|default='#3e3e3e'};
+            --theme-theme: {$config.home_theme|default='#133ab3'};
+            --theme-background: {$config.home_background|default='#fafafa'};
+            --theme-other_background: {$config.other_background|default='#ffffff'};
+        }
+        {$config.home_css}
+    </style>

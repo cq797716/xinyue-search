@@ -1,0 +1,224 @@
+{include file="common/header"}
+<head>
+    <link rel="stylesheet" href="/static/index/css/detail.css">
+</head>
+<body>
+    <div class="headBg" style="background-image: url({$config.home_bg});"></div>
+    <div id="app" v-cloak>
+        {include file="common/head"}
+        <div class="searchBox searchDetail">
+            <div class="search">
+                <input type="text" v-model="keyword" placeholder="输入关键字进行搜索" @keyup.enter="searchBtn" confirm-type="search" @confirm="searchBtn">
+                <div class="btn" @click="searchBtn">
+                    <i class="iconfont icon-sousuo"></i>
+                </div>
+            </div>
+        </div>
+        <div class="listBox detailBox">
+            <div class="left">
+                <h3>详情</h3>
+                <div class="box details">
+                    {notempty name="detail.vod_pic"}
+                    <div class="pic">
+                        <img src="{$detail.vod_pic}" />
+                    </div>
+                    {/notempty}
+                    <div class="title">{$detail.title}</div>
+                    <div class="cat">
+                        <div class="l">资源分类</div>
+                        <div class="r">
+                            {if condition="$detail.category && $detail.category.name"}
+                            {$detail.category.name}
+                            {else /}
+                            其它
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="cat">
+                        <div class="l">资源描述</div>
+                        <div class="r">
+                            {if condition="$detail.vod_content"}
+                            {$detail.vod_content}
+                            {else /}
+                            {$detail.title}  是一部精彩的短剧，剧情紧凑，演员表现出色，现已完结，全集免费观看！资源已整理至夸克网盘，随时随地轻松追剧，不容错过！
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="cat">
+                        <div class="l">更新时间</div>
+                        <div class="r">{$detail.times}</div>
+                    </div>
+                    <div class="cat">
+                        <div class="l">资源类型</div>
+                        <div class="r">
+                            <img src="/static/index/images/{$detail.is_type}.png" class="icon" />
+                            {if condition="$detail.is_type==1"}
+                            <span>阿里云盘</span>
+                            {elseif condition="$detail.is_type==2"/}
+                            <span>百度网盘</span>
+                            {elseif condition="$detail.is_type==3"/}
+                            <span>UC网盘</span>
+                            {elseif condition="$detail.is_type==4"/}
+                            <span>迅雷网盘</span>
+                            {else /}
+                            <span>夸克网盘</span>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="cat" v-if="is_mobile_device">
+                        <div class="l">资源地址</div>
+                        <div class="r">
+                            <a href="{$detail.url}" target="_blank">{$detail.url}</a>
+                        </div>
+                    </div>
+                    {notempty name="detail.code"}
+                    <div class="cat">
+                        <div class="l">提取码</div>
+                        <div class="r" style="color: #FF3F3D;">{$detail.code}</div>
+                    </div>
+                    {/notempty}
+                    <div class="cat">
+                        <div class="l">友情提示</div>
+                        <div class="r">
+                            资源一定要转存到夸克网盘方可观看全集，否则只能观看2分钟，夸克还可以投屏。
+                        </div>
+                    </div>
+                    <!-- 手机分成两行 -->
+                    <div class="btns" v-if="is_mobile_device">
+                        <div class="btn btnCol" @click.stop="copyText($event,'{$detail.title|trim}','{$detail.url}','{$detail.code}')"><i class="iconfont icon-fenxiang1"></i>复制分享</div>
+                        <a  href="{$detail.url}" target="_blank" class="btn"><i class="iconfont icon-yun_o"></i>立即访问</a>
+                    </div>
+                    <div class="btns" v-if="is_mobile_device">
+                        <a  href="https://2oe.cn/426.html" target="_blank" class="btn btn-skyblue"><i class="iconfont icon-fangwen"></i>观看教程</a>
+                        <a class="btn btn-green"  @click.prevent="openGroupDialogImg"><i class="iconfont icon--lianjie"></i>加入群聊</a>
+                    </div>
+                    
+                    <!-- PC 都在一行-->
+                    <div class="btns" v-if="!is_mobile_device">
+                        <div class="btn btnCol" @click.stop="copyText($event,'{$detail.title|trim}','{$detail.url}','{$detail.code}')">
+                            <i class="iconfont icon-fenxiang1"></i>复制分享
+                        </div>
+                        <a class="btn btn-orange" 
+                           :href="Number('{$config.pc_access_type}') === 1 ? '{$detail.url}' : 'javascript:void(0)'" 
+                           :target="Number('{$config.pc_access_type}') === 1 ? '_blank' : ''"
+                           @click="toUrlOrShowQrcode('{$detail.url}', $event)">
+                            <i class="iconfont icon-yun_o"></i>立即访问
+                        </a>
+                        <a href="https://2oe.cn/426.html" target="_blank" class="btn btn-skyblue">
+                            <i class="iconfont icon-fangwen"></i>观看教程
+                        </a>
+                        <a class="btn btn-green" @click.prevent="openGroupDialogImg">
+                            <i class="iconfont icon--lianjie"></i>加入群聊
+                        </a>
+                    </div>
+                    <div class="cat">
+                        <div class="r" style="text-align: center; width: 100%;">资源不对或找不到资源加群免费帮找。</div>
+                    </div>
+                </div>
+                
+                        <el-dialog v-model="showQrCodeImg" width="250px">
+                            <div style="text-align:center;color:#133ab3;font-size:20px;font-weight: bold;">
+                                请使用手机「扫一扫」
+                            </div>
+                            <div style="text-align:center;font-size:12px">
+                                在手机上观看，获得更好体验
+                            </div>
+                                
+                            <div ref="qrCodeImg" style="display:grid;place-items:center;padding:20px;"></div>
+                            
+                            
+                            <div style="text-align:center;font-size:12px;color:#a73437">
+                                暂不支持电脑端观看
+                                <br />
+                                因电脑端观看效果不好
+                            </div>
+                            
+
+                        </el-dialog>
+                        <el-dialog v-model="showGroupImg" :width="is_mobile_device ? '80%' : '500px' ">
+                            <img src="{$config.qcode}" style="width:100%;max-height:80vh"/>
+                        </el-dialog>
+                <h3 class="samelistNav">相关资源</h3>
+                <div class="box details samelistBox">
+                    <div class="samelist">
+                        {volist name="sameList" id="vo"}
+                        <a href="/d/{$vo.source_id}.html" class="item">
+                            <p>
+                                <span>{$key+1}</span>
+                                {$vo.title}
+                            </p>
+                        </a>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                {volist name="hotList" id="vo"}
+                    <div class="nav">
+                        {notempty name="vo.image"}
+                        <img src="{$vo.image}" :alt="{$vo.name}">
+                        {/notempty}
+                        {$vo.name}
+                    </div>
+                    <div class="box">
+                        <div class="list">
+                            {volist name="vo.list" id="vos" length="5"}
+                            <a href="/s/{$vos.title}.html" class="item">
+                                <p>
+                                    <span>{$key+1}</span>
+                                    {$vos.title}
+                                </p>
+                            </a>
+                            {/volist}
+                        </div>
+                    </div>
+                {/volist}
+            </div>
+        </div>
+        {include file="common/foot"}
+    </div>
+    {include file="common/footer"}
+    <script type="text/javascript" charset="utf-8">
+        // 添加调试代码
+        console.log('PC访问类型:', '{$config.pc_access_type}');
+        
+        const vueApp = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    rankList: JSON.parse('<?php echo json_encode($rankList, JSON_UNESCAPED_UNICODE); ?>'),
+                    showQrCodeImg: false,
+                    showGroupImg: false,
+                    keyword: ''
+                }
+            },
+            mounted() {
+                // 在mounted中也打印一下
+                console.log('Vue中的PC访问类型:', Number('{$config.pc_access_type}'), typeof Number('{$config.pc_access_type}'));
+                
+                for (const item of this.rankList) {
+                    axios.get('/api/tool/ranking',{
+                        params: {
+                          channel: item.name
+                        }
+                    })
+                }
+            },
+            methods: {
+                toUrlOrShowQrcode(url, event) {
+                    const accessType = Number('{$config.pc_access_type}');
+                    
+                    if (accessType === 1) {
+                        // 直接访问模式，不做任何处理，让链接自然跳转
+                        return true;
+                    } else {
+                        // 二维码模式，阻止默认跳转并显示二维码
+                        event.preventDefault();
+                        this.showQrCodeImg = true;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

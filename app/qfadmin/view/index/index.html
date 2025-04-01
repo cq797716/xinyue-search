@@ -1,0 +1,102 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	   <title>后台管理系统</title>
+	   {include file="common/header"/}
+	   <style>
+	       body, html {
+	           height: 100%;
+	           margin: 0;
+	           font-family: Arial, sans-serif;
+	       }
+	       .homecontainer {
+	           display: flex;
+	           align-items: center;
+	           justify-content: center;
+	           height: 100%;
+	           background-color: #f4f4f4;
+	       }
+	       .homecontainer div {
+	           text-align: center;
+	           background: white;
+	           padding: 40px;
+	           border-radius: 10px;
+	           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	       }
+	       .homecontainer img {
+	           max-width: 200px;
+	           margin-bottom: 20px;
+	           transition: transform 0.3s ease;
+	       }
+	       .homecontainer img:hover {
+	           transform: scale(1.1);
+	       }
+	       .homecontainer p {
+	           color: #999999;
+	           font-size: 14px;
+	       }
+	       .notice-box {
+	           max-width: 600px;
+	           margin: 20px auto;
+	           box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+	       }
+	       .notice-box a {
+	           color: #007bff;
+	           text-decoration: none;
+	       }
+	       .notice-box a:hover {
+	           text-decoration: underline;
+	       }
+	   </style>
+
+	   <div id="app">
+	       <div class="homecontainer">
+	           <div>
+	               
+	               <h1 style="color: #333; margin-bottom: 15px;">欢迎来到影视搜索系统</h1>
+	               <h3 style="color: #666; margin-bottom: 20px;">2025.2.7更新开源版本</h3>
+	               <p>资源管理系统2.3版本</p>
+				   <p>有偿解决问题微信：qcgwl520</p>
+	               
+	               <div class="notice-box" style="margin-top: 20px; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px;">
+	                   <h4 style="color: #2c3e50; margin-bottom: 10px;">重要说明：</h4>
+	                   <ul style="color: #666; line-height: 1.6; padding-left: 20px;">
+	                       <li>添加删除临时资源的计划任务：<a href="" target="_blank">https://域名/api/other/delete_search</a></li>
+	                       <li>search全部转存执行 1分钟~5分钟 后中断问题解决方案：
+	                           <ul style="margin-top: 5px;">
+	                               <li>修改超时限制至最大值 86400</li>
+	                               <li>修改后需重启服务</li>
+	                           </ul>
+	                       </li>
+	                       <li>宝塔设置参考：<a href="https://www.kancloud.cn/loveouu/bthelp/1541867" target="_blank">配置教程</a></li>
+	                       <li>注意：非 7.2 版本导致的报错请自行解决，建议使用 7.2 版本</li>
+	                       <li>获取夸克网盘 Cookie：
+	                           <ol style="margin-top: 5px;">
+	                               <li>登录 pan.quark.cn</li>
+	                               <li>按 F12 打开开发者工具</li>
+	                               <li>按 F5 刷新页面获取</li>
+								   
+	                           </ol>
+							   <li>OE源码网二次开发分享：2oe.cn
+								<li>更新日志：<a href="https://kdocs.cn/l/ciTKKKyisTjC" target="_blank">点我查看</a></li>
+	                       </li>
+	                   </ul>
+	               </div>
+	           </div>
+	       </div>
+	   </div>
+	   {include file="common/footer"/}
+	   <script>
+	       var app = new Vue({
+	           el: '#app',
+	           data() {
+	               return {
+	                   data: {}
+	               }
+	           },
+	           methods: {
+	           }
+	       });
+	   </script>
+	</body>
+	</html>

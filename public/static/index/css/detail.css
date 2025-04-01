@@ -1,0 +1,75 @@
+/* 立即访问按钮 - 使用渐变橙色 */
+.btn-orange {
+    background: linear-gradient(45deg, #ff6b35, #ff8f6b) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-orange:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+/* 观看教程按钮 - 使用渐变蓝色 */
+.btn-skyblue {
+    background: linear-gradient(45deg, #3498db, #5dade2) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-skyblue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+/* 加入群聊按钮 - 使用渐变绿色 */
+.btn-green {
+    background: linear-gradient(45deg, #2ecc71, #55e38e) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+}
+
+/* 复制分享按钮 - 使用柔和的灰色 */
+.btnCol {
+    background: linear-gradient(45deg, #95a5a6, #bdc3c7) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(149, 165, 166, 0.3);
+    transition: all 0.3s ease;
+}
+.btnCol:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.4);
+}
+
+.detailBox .details .btns .btn-orange {
+    background: linear-gradient(45deg, #ff6b35, #ff8f6b) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+}
+
+.detailBox .details .btns .btn-skyblue {
+    background: linear-gradient(45deg, #3498db, #5dade2) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+}
+
+.detailBox .details .btns .btn-green {
+    background: linear-gradient(45deg, #2ecc71, #55e38e) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+    transition: all 0.3s ease;
+}
+
+.detailBox .details .btns .btnCol {
+    background: linear-gradient(45deg, #95a5a6, #bdc3c7) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(149, 165, 166, 0.3);
+    transition: all 0.3s ease;
+} 
