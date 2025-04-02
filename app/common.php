@@ -74,8 +74,8 @@ function getRandString($len)
 function get_order_no($prefix = 'QF')
 {
     $order_no = $prefix;
-    $order_no .= mb_strtoupper(dechex(date('m')), 'utf-8');
-    $order_no .= date('d') . mb_substr(time(), -5, null, 'utf-8');
+    $order_no .= mb_strtoupper(dechex(日期('m')), 'utf-8');
+    $order_no .= 日期('d') . mb_substr(time(), -5, null, 'utf-8');
     $order_no .= mb_substr(microtime(), 2, 5, 'utf-8');
     return $order_no;
 }
@@ -809,7 +809,7 @@ function determineIsType($url) {
   */
  function source2($title)
  {
-     $urlDefault = "http://s.kkkob.com"; //http://s.kkkob.com
+     $urlDefault = "https://m.kkkba.com/app"; //http://s.kkkob.com
      $url2 = [];
      $res = curlHelper($urlDefault."/v/api/getToken", "GET")['body'];
      $res = json_decode($res, true);
@@ -894,7 +894,7 @@ function determineIsType($url) {
      $url3 = [];
      $url = 'https://www.qileso.com/tag/quark?s='.$title;
      $dom = getDom($url);
-     $finder = new DomXPath($dom);
+     $finder = 新建 DomXPath($dom);
      // 查询class值为list-group post-list mt-3的元素
      $nodes =$finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' list-group post-list mt-3 ')]//a");
      
@@ -903,7 +903,7 @@ function determineIsType($url) {
          $href = $firstNode->getAttribute('href');
          
          $dom = getDom($href);
-         $finder = new DomXPath($dom);
+         $finder = 新建 DomXPath($dom);
          
          // 查询包含特定前缀的href属性的所有<a>标签
          $nodes =$finder->query("//@*[starts-with(., 'https://pan.quark.cn/s/')]");
@@ -940,7 +940,7 @@ function determineIsType($url) {
  {
      $url = 'https://www.pansearch.me/search?keyword='.urlencode($title).'&pan=quark';
      $dom = getDom($url);
-     $finder = new DomXPath($dom);
+     $finder = 新建 DomXPath($dom);
      
      // 使用 XPath 查询选择具有特定类名的元素
      $nodes =$finder->query('//div[contains(concat(" ", normalize-space(@class), " "), " whitespace-pre-wrap ") and contains(concat(" ", normalize-space(@class), " "), " break-all ")]');
